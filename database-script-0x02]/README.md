@@ -1,0 +1,1 @@
+Inserting details in the database has been done by the seed.sql file
