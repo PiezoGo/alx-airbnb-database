@@ -1,7 +1,8 @@
-SELECT * FROM Property 
-LEFT JOIN Review 
-ON Property.property_id = Review.property_id
-WHERE Review.rating > 4.0
+SELECT Property.property_id, Property.name, Property.location, Property.pricepernight
+FROM Property
+JOIN Review ON Property.property_id = Review.property_id
+GROUP BY Property.property_id
+HAVING AVG(Review.rating) > 4.0;
 
 SELECT *
 FROM `User` 
