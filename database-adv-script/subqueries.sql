@@ -4,9 +4,9 @@ ON Property.property_id = Review.property_id
 WHERE Review.rating > 4.0
 
 SELECT *
-FROM `User` u
+FROM `User` 
 WHERE (
     SELECT COUNT(*)
-    FROM Booking b
-    WHERE b.user_id = u.user_id
+    FROM Booking 
+    WHERE Booking.user_id = `User`.user_id
 ) > 3;
