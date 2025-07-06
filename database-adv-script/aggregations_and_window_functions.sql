@@ -8,12 +8,22 @@ GROUP BY
 
 
 SELECT 
-    property_id,
-    host_id,
-    name,
-    description,
-    location,
-    pricepernight,
-    RANK() OVER(ORDER BY host_id DESC) AS `Rank`
+    p.property_id,
+    p.host_id,
+    p.name,
+    p.description,
+    p.location,
+    p.pricepernight,
+    COALESCE(b.total_bookings, 0) AS total_bookings,
+    RANK() OVER (ORDER BY COALESCE(b.total_bookings, 0) DESC) AS `Rank`
 FROM 
-    Property;
+    Property p
+LEFT JOIN (
+    SELECT 
+        property_id,
+        COUNT(*) AS total_bookings
+    FROM 
+        Booking
+    GROUP BY 
+        property_id
+) b ON p.property_id = b.property_id;
