@@ -1,0 +1,2 @@
+This folder contains the Joins: To be more specific the Inner join, Left Join and the Full outer join.
+But because MySQL does not support FULL OUTER JOIN I hace opted to do a union of a left join and Right join
