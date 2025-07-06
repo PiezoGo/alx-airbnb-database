@@ -6,12 +6,8 @@ ON User.user_id = Booking.user_id;
 SELECT * FROM Property 
 LEFT JOIN Review 
 ON Property.property_id = Review.property_id
-    ORDER BY name;
+ORDER BY name;
 
-SELECT *
-FROM User
-LEFT JOIN Booking ON User.created_at = Booking.created_at
-UNION
-SELECT *
-FROM User
-RIGHT JOIN Booking ON User.created_at = Booking.created_at;
+SELECT * FROM `User` 
+FULL OUTER JOIN Booking 
+ON `User`.created_at = Booking.created_at;
