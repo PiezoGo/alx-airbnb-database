@@ -15,7 +15,7 @@ SELECT
     p.location,
     p.pricepernight,
     COALESCE(b.total_bookings, 0) AS total_bookings,
-    RANK() OVER (ORDER BY COALESCE(b.total_bookings, 0) DESC) AS `Rank`
+ROW_NUMBER() OVER (ORDER BY COALESCE(b.total_bookings, 0) DESC) AS `RowNumber`
 FROM 
     Property p
 LEFT JOIN (
