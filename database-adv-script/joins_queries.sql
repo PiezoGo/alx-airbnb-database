@@ -1,6 +1,6 @@
 -- Active: 1751746574894@@127.0.0.1@3306@ALX_AirBnB
 SELECT * FROM Booking 
-JOIN User 
+INNER JOIN User 
 ON User.user_id = Booking.user_id;
 
 SELECT * FROM Property 
