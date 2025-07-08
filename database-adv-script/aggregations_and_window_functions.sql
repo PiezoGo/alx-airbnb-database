@@ -8,22 +8,27 @@ GROUP BY
 
 
 SELECT 
-    p.property_id,
-    p.host_id,
-    p.name,
-    p.description,
-    p.location,
-    p.pricepernight,
-    COALESCE(b.total_bookings, 0) AS total_bookings,
-ROW_NUMBER() OVER (ORDER BY COALESCE(b.total_bookings, 0) DESC) AS `RowNumber`
-FROM 
-    Property p
-LEFT JOIN (
+    property_id,
+    host_id,
+    name,
+    description,
+    location,
+    pricepernight,
+    ROW_NUMBER() OVER(ORDER BY total_bookings DESC) AS total_bookings
+FROM (
     SELECT 
-        property_id,
-        COUNT(*) AS total_bookings
-    FROM 
-        Booking
-    GROUP BY 
-        property_id
-) b ON p.property_id = b.property_id;
+    user_id,
+    COUNT(*) AS total_bookings
+    FROM Booking  LEFT JOIN Property 
+    ON Property.property_id = Booking.property_id
+    );
+
+SELECT property_id, total_bookings, 
+ROW_NUMBER() OVER(ORDER BY total_bookings DESC) AS booking_cts
+FROM 
+(SELECT Booking.property_id,
+COUNT(*) AS total_bookings
+FROM `Booking` 
+JOIN `Property`
+ON `Booking`.property_id = `Property`.property_id
+GROUP BY `Property`.property_id) AS booking_counts ;
