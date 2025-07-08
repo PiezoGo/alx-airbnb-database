@@ -24,7 +24,7 @@ FROM (
     );
 
 SELECT property_id, total_bookings, 
-ROW_NUMBER() OVER(ORDER BY total_bookings DESC) AS booking_cts
+RANK() OVER(ORDER BY total_bookings DESC) AS booking_cts
 FROM 
 (SELECT Booking.property_id,
 COUNT(*) AS total_bookings
