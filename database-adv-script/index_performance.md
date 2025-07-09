@@ -1,0 +1,1 @@
+This file contains indexes for optimizing performance of the WHERE,  JOIN queries and ORDER BY clauses
