@@ -18,7 +18,8 @@ LEFT JOIN Payment
   ON Booking.booking_id = Payment.booking_id;
 
 
-  SELECT 
+
+SELECT 
   Booking.booking_id,
   Booking.start_date,
   Booking.end_date,
@@ -30,7 +31,7 @@ LEFT JOIN Payment
   
   Property.name AS property_name,
   Property.location,
-  Property.price_per_night,
+  Property.pricepernight,
 
   Payment.amount,
   Payment.payment_method,
